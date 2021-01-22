@@ -29,7 +29,7 @@ app.get("/api/restaurants/:id", (req, res) => {
       if(result){
         res.status(201).json(result)
       }else{
-        res.status(204).json({error_message: 'No restaurants founded',})
+        res.status(204).json({message: 'Data was not found',})
       }
   })
   .catch((err) =>{
@@ -48,7 +48,7 @@ app.get("/api/restaurants", (req, res) => {
             if(result){
               res.status(201).json(result)
             }else{
-              res.status(204).json({error_message: 'No restaurants founded',})
+              res.status(204).json({message: 'Data was not found',})
             }
         })
         .catch((err) =>{
@@ -64,7 +64,7 @@ app.put("/api/restaurants/:id", (req, res) => {
       if(result){
         res.status(201).json(result)
       }else{
-        res.status(204).json({error_message: 'No restaurants founded',})
+        res.status(204).json({message: 'Data was not found' ,})
       }
   })
   .catch((err) =>{
@@ -81,7 +81,7 @@ app.post("/api/restaurants", (req, res) => {
       if(result){
         res.status(201).json(result)
       }else{
-        res.status(204).json({error_message: 'No restaurants founded',})
+        res.status(204).json({message: 'Data was not found',})
       }
   })
   .catch((err) =>{
@@ -95,7 +95,7 @@ app.delete("/api/restaurants/:id", (req, res) => {
     if(result){
       res.status(201).json(result)
     }else{
-      res.status(204).json({error_message: 'No restaurants founded',})
+      res.status(204).json({message: 'Data was not found',})
     }
 })
 .catch((err) =>{
