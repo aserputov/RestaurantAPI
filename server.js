@@ -5,7 +5,7 @@
      
 * (including web sites) or distributed to other students. *
 * Name: Serputov Anatoliy Student ID: 167389188 Date: 01/16/2021
-* Heroku Link: _______________________________________________________________
+* Heroku Link: https://arcane-ravine-29798.herokuapp.com/api/restaurants/
 * ********************************************************************************/
 
 const express = require("express");
@@ -13,7 +13,9 @@ const cors = require("cors");
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const RestaurantDB = require("./modules/restaurantDB.js");
-const db = new RestaurantDB("mongodb+srv://serputov:serputov@cluster0.ftpdg.mongodb.net/sample_restaurants?retryWrites=true&w=majority" );
+require('dotenv').config();
+const { MONGODB_CONN_STRING } = process.env;
+const db = new RestaurantDB(MONGODB_CONN_STRING);
 const app = express();
 const HTTP_PORT = process.env.PORT || 8080;
 
@@ -25,9 +27,9 @@ mongoose.connection.on("open", () => {
 
 app.get("/api/restaurants/:id", (req, res) => {
     db.getRestaurantById(req.params.id)
-    .then((result) => {
-      if(result){
-        res.status(201).json(result)
+    .then((param) => {
+      if(param){
+        res.status(201).json(param)
       }else{
         res.status(204).json({message: 'Data was not found',})
       }
@@ -44,9 +46,9 @@ app.get("/", (req, res) => {
 
 app.get("/api/restaurants", (req, res) => {
       db.getAllRestaurants(req.query.page, req.query.perPage, req.query.borough)
-      .then((result) => {
-            if(result){
-              res.status(201).json(result)
+      .then((param) => {
+            if(param){
+              res.status(201).json(param)
             }else{
               res.status(204).json({message: 'Data was not found',})
             }
@@ -60,9 +62,9 @@ app.get("/api/restaurants", (req, res) => {
 
 app.put("/api/restaurants/:id", (req, res) => {
     db.updateRestaurantById(req.body,req.params.id)
-    .then((result) => {
-      if(result){
-        res.status(201).json(result)
+    .then((param) => {
+      if(param){
+        res.status(201).json(param)
       }else{
         res.status(204).json({message: 'Data was not found' ,})
       }
@@ -77,9 +79,9 @@ app.put("/api/restaurants/:id", (req, res) => {
 
 app.post("/api/restaurants", (req, res) => {
     db.addNewRestaurant(req.body)
-    .then((result) => {
-      if(result){
-        res.status(201).json(result)
+    .then((param) => {
+      if(param){
+        res.status(201).json(param)
       }else{
         res.status(204).json({message: 'Data was not found',})
       }
@@ -91,9 +93,9 @@ app.post("/api/restaurants", (req, res) => {
 
 app.delete("/api/restaurants/:id", (req, res) => {
   db.deleteRestaurantById(req.params.id)
-  .then((result) => {
-    if(result){
-      res.status(201).json(result)
+  .then((param) => {
+    if(param){
+      res.status(201).json(param)
     }else{
       res.status(204).json({message: 'Data was not found',})
     }
