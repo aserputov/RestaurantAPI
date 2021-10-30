@@ -26,7 +26,7 @@ mongoose.connection.on("open", () => {
 });
 
 app.get("/api/restaurants/:id", (req, res) => {
-    db.getRestaurantById(req.params.id)
+    db.findOne({_id: req.params.id}).exec();
     .then((param) => {
       if(param){
         res.status(201).json(param)
@@ -45,17 +45,22 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/restaurants", (req, res) => {
-      db.getAllRestaurants(req.query.page, req.query.perPage, req.query.borough)
+     
+    
+
+      
+      db.findOne({_id: req.query.Name}).exec()
       .then((param) => {
-            if(param){
-              res.status(201).json(param)
-            }else{
-              res.status(204).json({message: 'Data was not found',})
-            }
-        })
-        .catch((err) =>{
-            res.status(500).json(err)
-        })
+        if(param){
+          res.status(201).json(param)
+        }else{
+          res.status(204).json({message: 'Data was not found',})
+        }
+    })
+    .catch((err) =>{
+        res.status(500).json(err)
+    })
+     
 });
 
 
