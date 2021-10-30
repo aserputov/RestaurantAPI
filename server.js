@@ -5,7 +5,7 @@
      
 * (including web sites) or distributed to other students. *
 * Name: Serputov Anatoliy Student ID: 167389188 Date: 01/16/2021
-* Heroku Link: https://arcane-ravine-29798.herokuapp.com/api/restaurants/
+* Heroku Link:
 * ********************************************************************************/
 
 const express = require("express");
